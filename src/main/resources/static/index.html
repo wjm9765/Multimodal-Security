@@ -1,0 +1,122 @@
+<!-- `src/main/resources/static/index.html` -->
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>녹화 로그인</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 상단바 중심 프롬프트 배치 및 가독성 향상 */
+        .topbar {
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 10px 16px;
+            background: #222;
+            color: #fff;
+            height: 64px;
+        }
+
+        .topbar .brand {
+            position: absolute;
+            left: 16px;
+            font-weight: bold;
+            z-index: 2;
+        }
+
+        /* 프롬프트 영역을 상단바의 정확한 중앙에 고정 */
+        .prompt-area {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            z-index: 3;
+            pointer-events: auto;
+        }
+
+        .prompt-area button {
+            padding: 8px 12px;
+            border: none;
+            background: #4caf50;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        /* 중앙 표시창: 충분한 너비, 줄 바꿈 허용, 가독성 개선 */
+        .prompt-display {
+            background: #fff;
+            color: #000;
+            padding: 8px 12px;
+            border-radius: 6px;
+            min-width: 420px;            /* 긴 문장 보이게 할 최소 너비 */
+            max-width: calc(100vw - 200px); /* 작은 화면에서 좌우 여유 확보 */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;         /* 한 줄로 보여주기 (원하면 제거하여 줄바꿈 가능) */
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+
+        /* 반응형: 화면이 좁아지면 텍스트 줄바꿈 허용 */
+        @media (max-width: 520px) {
+            .prompt-display {
+                white-space: normal;
+                min-width: 220px;
+                font-size: 14px;
+                max-width: calc(100vw - 40px);
+            }
+            .topbar {
+                height: auto;
+                padding: 10px;
+            }
+            .topbar .brand {
+                position: relative;
+                left: auto;
+            }
+            .prompt-area {
+                position: relative;
+                left: auto;
+                transform: none;
+                justify-content: center;
+                margin: 6px auto 0;
+            }
+        }
+    </style>
+</head>
+<body>
+<header class="topbar">
+    <div class="brand">Multimodal_Security</div>
+    <div class="prompt-area">
+        <button id="promptButton">프롬프트 확인</button>
+        <div id="promptDisplay" class="prompt-display">프롬프트 없음</div>
+    </div>
+</header>
+
+<main class="container">
+    <section class="preview-section">
+        <h2>미리보기</h2>
+        <video id="preview" autoplay muted playsinline></video>
+    </section>
+
+    <section class="controls">
+        <button id="loginButton">로그인 (녹화 시작)</button>
+        <button id="completeButton" disabled>완료 (녹화 중지)</button>
+    </section>
+
+    <section id="resultContainer" class="result" style="display:none;">
+        <h2>녹화 결과</h2>
+        <video id="recordedVideo" controls></video>
+        <a id="downloadLink" style="display:none;">다운로드</a>
+    </section>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

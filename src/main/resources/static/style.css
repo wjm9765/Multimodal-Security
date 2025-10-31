@@ -1,0 +1,87 @@
+/* src/main/resources/static/style.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f5f7fa;
+    color: #333;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 16px;
+    background: #222;
+    color: #fff;
+}
+
+.topbar .brand {
+    font-weight: bold;
+}
+
+.prompt-area {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.prompt-area button {
+    padding: 6px 10px;
+    border: none;
+    background: #4caf50;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.prompt-display {
+    background: #fff;
+    color: #000;
+    padding: 6px 10px;
+    border-radius: 4px;
+    min-width: 200px;
+    max-width: 400px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.container {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.preview-section video,
+.result video {
+    width: 100%;
+    max-height: 480px;
+    background: #000;
+    border-radius: 6px;
+}
+
+.controls {
+    display: flex;
+    gap: 10px;
+}
+
+.controls button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #1976d2;
+    color: #fff;
+}
+
+.controls button[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.result {
+    margin-top: 10px;
+}
